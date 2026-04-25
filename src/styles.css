@@ -1,0 +1,706 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-brand-yellow: #c29b5a;
+  --color-brand-charcoal: #171e19;
+  --color-brand-sage: #b7c6c2;
+  --color-brand-star: #ffbc2e;
+  --color-brand-darkgray: #272727;
+
+  --font-display: "Satoshi", "Cabinet Grotesk", "Archivo Black", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+
+  --shadow-brut-sm: 4px 4px 0px 0px #000000;
+  --shadow-brut-md: 8px 8px 0px 0px #000000;
+  --shadow-brut-lg: 12px 12px 0px 0px #000000;
+}
+
+:root {
+  --radius: 0.75rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0 0 0);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.93 0.13 95);
+  --secondary-foreground: oklch(0.145 0 0);
+  --muted: oklch(0.96 0 0);
+  --muted-foreground: oklch(0.45 0 0);
+  --accent: oklch(0.84 0.025 175);
+  --accent-foreground: oklch(0.145 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0 0 0);
+  --input: oklch(0 0 0);
+  --ring: oklch(0 0 0);
+}
+
+@font-face {
+  font-family: "Cabinet Grotesk";
+  src: url("https://fonts.cdnfonts.com/s/108025/CabinetGrotesk-Extrabold.woff") format("woff");
+  font-weight: 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Cabinet Grotesk";
+  src: url("https://fonts.cdnfonts.com/s/108025/CabinetGrotesk-Bold.woff") format("woff");
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Cabinet Grotesk";
+  src: url("https://fonts.cdnfonts.com/s/108025/CabinetGrotesk-Medium.woff") format("woff");
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("https://fonts.cdnfonts.com/s/85546/Satoshi-Medium.woff") format("woff");
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("https://fonts.cdnfonts.com/s/85546/Satoshi-Bold.woff") format("woff");
+  font-weight: 700;
+  font-display: swap;
+}
+
+@layer base {
+  * {
+    border-color: #000000;
+  }
+  body {
+    background-color: var(--color-background);
+    color: #000000;
+    font-family: var(--font-body);
+    font-weight: 500;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+}
+
+@utility brut-border {
+  border: 2px solid #000000;
+}
+@utility shadow-brut-sm {
+  box-shadow: 4px 4px 0px 0px #000000;
+}
+@utility shadow-brut-md {
+  box-shadow: 8px 8px 0px 0px #000000;
+}
+@utility shadow-brut-lg {
+  box-shadow: 12px 12px 0px 0px #000000;
+}
+
+.dot-pattern {
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.18) 1.5px, transparent 1.5px);
+  background-size: 32px 32px;
+}
+
+.btn-brut {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  border: 2px solid #000;
+  border-radius: 0.75rem;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 8px 8px 0px 0px #000000;
+}
+.btn-brut:hover {
+  transform: translate(4px, 4px);
+  box-shadow: 4px 4px 0px 0px #000000;
+}
+.btn-brut-sm {
+  padding: 0.625rem 1.25rem;
+  box-shadow: 4px 4px 0px 0px #000000;
+}
+.btn-brut-sm:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px 0px #000000;
+}
+.btn-black {
+  background: #000;
+  color: #fff;
+}
+.btn-white {
+  background: #fff;
+  color: #000;
+}
+.btn-yellow {
+  background: #c29b5a;
+  color: #000;
+}
+
+.marquee {
+  display: flex;
+  gap: 4rem;
+  animation: marquee 40s linear infinite;
+  width: max-content;
+}
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ===== Mining-themed animations ===== */
+
+/* Floating mining icons */
+@keyframes mine-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--rot, 0deg));
+  }
+  50% {
+    transform: translateY(-24px) rotate(calc(var(--rot, 0deg) + 8deg));
+  }
+}
+.mine-float {
+  animation: mine-float 7s ease-in-out infinite;
+}
+
+/* Slow continuous rotation (gears) */
+@keyframes mine-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.mine-spin {
+  animation: mine-spin 18s linear infinite;
+}
+.mine-spin-rev {
+  animation: mine-spin 24s linear infinite reverse;
+}
+
+/* Pickaxe swing */
+@keyframes pickaxe-swing {
+  0%,
+  100% {
+    transform: rotate(-18deg);
+  }
+  50% {
+    transform: rotate(28deg);
+  }
+}
+.pickaxe-swing {
+  transform-origin: 70% 30%;
+  animation: pickaxe-swing 2.4s cubic-bezier(0.5, 0.05, 0.5, 0.95) infinite;
+}
+
+/* Conveyor belt scroll */
+@keyframes conveyor {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 80px 0;
+  }
+}
+.conveyor-belt {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    #000 0 12px,
+    #c29b5a 12px 24px,
+    #000 24px 36px,
+    #171e19 36px 48px
+  );
+  background-size: 80px 100%;
+  animation: conveyor 1.6s linear infinite;
+}
+
+/* Falling ore particles */
+@keyframes ore-fall {
+  0% {
+    transform: translateY(-20vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(120vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+.ore-particle {
+  position: absolute;
+  animation: ore-fall linear infinite;
+}
+
+/* Drilling pulse */
+@keyframes drill-pulse {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+.drill-pulse {
+  animation: drill-pulse 0.4s linear infinite;
+}
+
+/* Spark twinkle */
+@keyframes spark {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.spark {
+  animation: spark 1.8s ease-in-out infinite;
+}
+
+/* Reveal-on-scroll */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.reveal-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition:
+    opacity 0.9s cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.reveal-left.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.reveal-right {
+  opacity: 0;
+  transform: translateX(60px);
+  transition:
+    opacity 0.9s cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.reveal-right.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.92);
+  transition:
+    opacity 0.7s ease-out,
+    transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.reveal-scale.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Mountain silhouette layered bg */
+.mountain-bg {
+  background-image:
+    linear-gradient(180deg, transparent 60%, rgba(0, 0, 0, 0.08) 100%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 300' preserveAspectRatio='none'><polygon points='0,300 200,120 350,200 520,60 700,180 880,90 1050,200 1200,120 1200,300' fill='%23171e19' opacity='0.12'/><polygon points='0,300 150,200 320,240 480,160 640,230 820,180 980,240 1200,200 1200,300' fill='%23171e19' opacity='0.18'/></svg>");
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: 100% 60%;
+}
+
+/* Slow drift of background blobs */
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(30px, -20px);
+  }
+}
+.drift-slow {
+  animation: drift 14s ease-in-out infinite;
+}
+
+/* Marquee reverse direction */
+.marquee-rev {
+  display: flex;
+  gap: 4rem;
+  animation: marquee 50s linear infinite reverse;
+  width: max-content;
+}
+
+/* Number counter pop */
+@keyframes count-pop {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.count-pop {
+  animation: count-pop 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* 3D Spin Animation for Image */
+@keyframes spin-3d {
+  0% {
+    transform: perspective(1000px) rotateY(0deg);
+  }
+  100% {
+    transform: perspective(1000px) rotateY(360deg);
+  }
+}
+.animate-spin-3d {
+  animation: spin-3d 8s linear infinite;
+  transform-style: preserve-3d;
+}
+
+/* Truck driving animation */
+@keyframes truck-drive {
+  0% {
+    transform: translateX(-100vw);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100vw);
+    opacity: 0;
+  }
+}
+
+.truck-drive {
+  position: absolute;
+  animation: truck-drive 15s linear infinite;
+  display: flex;
+  align-items: center;
+  left: 0;
+}
+
+@keyframes digging {
+  0%, 100% { transform: rotate(-10deg); }
+  50% { transform: rotate(30deg); }
+}
+
+@keyframes digging-forearm {
+  0%, 100% { transform: rotate(20deg); }
+  50% { transform: rotate(-40deg); }
+}
+
+.excavator-arm {
+  animation: digging 3s ease-in-out infinite;
+}
+
+.excavator-forearm {
+  animation: digging-forearm 3s ease-in-out infinite;
+}
+
+
+
+
+/* GSAP Scroll Animations */
+.anim-box {
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.anim-content {
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.mine-spin, .mine-spin-rev, [aria-hidden='true'] {
+  will-change: transform;
+}
+
+/* Premium Header Styles */
+.header-glass {
+  background: rgba(245, 245, 245, 0.7);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header-scrolled {
+  background: rgba(250, 250, 250, 0.85);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+  height: 70px !important;
+}
+
+.nav-link-premium {
+  position: relative;
+  font-weight: 600;
+  color: #1a1a1a;
+  transition: all 0.3s ease;
+  padding: 8px 0;
+}
+
+.nav-link-premium::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 4px;
+  left: 0;
+  background-color: #C8A96A;
+  transition: width 0.3s ease;
+}
+
+.nav-link-premium:hover {
+  color: #C8A96A;
+}
+
+.nav-link-premium:hover::after {
+  width: 100%;
+}
+
+.btn-premium-cta {
+  background: #111;
+  color: #fff !important;
+  padding: 10px 24px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none !important;
+}
+
+.btn-premium-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  background: #000;
+}
+
+/* Premium Background Particle Animation */
+@keyframes floatParticle {
+  0% { 
+    transform: translateY(110vh) translateX(0) rotate(0deg); 
+    opacity: 0; 
+  }
+  10% { 
+    opacity: 0.5; 
+  }
+  90% { 
+    opacity: 0.5; 
+  }
+  100% { 
+    transform: translateY(-20vh) translateX(150px) rotate(360deg); 
+    opacity: 0; 
+  }
+}
+
+.bg-particle {
+  position: absolute;
+  background-color: #C8A96A;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 20;
+}
+
+/* Dust Particle Animation */
+@keyframes floatDust {
+  0% { transform: translate(0, 0); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% { transform: translate(200px, -80px); opacity: 0; }
+}
+
+/* Slow panning gradient shimmer */
+@keyframes gradientPan {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Rising mineral sparkle */
+@keyframes riseSparkle {
+  0% { transform: translateY(0) scale(1); opacity: 0; }
+  20% { opacity: 0.7; }
+  80% { opacity: 0.7; }
+  100% { transform: translateY(-300px) scale(0.5); opacity: 0; }
+}
+
+@keyframes sandStorm {
+  0% { 
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate(100px, 50px) rotate(120deg);
+  }
+  66% {
+    transform: translate(-50px, 100px) rotate(240deg);
+  }
+  100% { 
+    transform: translate(200px, -200px) rotate(360deg);
+  }
+}
+
+/* Slow horizontal drift for dust clouds */
+@keyframes driftCloud {
+  0% { transform: translateX(-100%); opacity: 0; }
+  10% { opacity: 0.15; }
+  90% { opacity: 0.15; }
+  100% { transform: translateX(100vw); opacity: 0; }
+}
+
+.media-shimmer-bg {
+  background: linear-gradient(
+    90deg,
+    rgba(183,198,194,0) 0%,
+    rgba(200,169,106,0.08) 25%,
+    rgba(183,198,194,0) 50%,
+    rgba(200,169,106,0.06) 75%,
+    rgba(183,198,194,0) 100%
+  );
+  background-size: 300% 100%;
+  animation: gradientPan 20s ease-in-out infinite;
+}
+
+.dust-cloud {
+  position: absolute;
+  width: 300px;
+  height: 80px;
+  border-radius: 50%;
+  filter: blur(40px);
+  background: rgba(160,175,170,0.3);
+  animation: driftCloud 60s linear infinite;
+}
+
+/* Truck driving animation */
+@keyframes truckDrive {
+  0% { transform: translateX(-200px); }
+  100% { transform: translateX(1640px); }
+}
+
+/* Excavator digging animation */
+@keyframes excavatorArm {
+  0%, 100% { transform: rotate(0deg); }
+  30% { transform: rotate(-20deg); }
+  60% { transform: rotate(10deg); }
+}
+
+@keyframes excavatorForearm {
+  0%, 100% { transform: rotate(0deg); }
+  30% { transform: rotate(30deg); }
+  60% { transform: rotate(-20deg); }
+}
+
+@keyframes excavatorBucket {
+  0%, 100% { transform: rotate(0deg); }
+  30% { transform: rotate(40deg); }
+  60% { transform: rotate(-30deg); }
+}
+
+/* Sand digging particles */
+@keyframes sandFall {
+  0% { transform: translate(0, 0) scale(1); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translate(-20px, 40px) scale(0.5); opacity: 0; }
+}
+
+.anim-truck {
+  animation: truckDrive 40s linear infinite;
+}
+
+.excavator-main-arm {
+  transform-origin: 390px 245px;
+  animation: excavatorArm 8s ease-in-out infinite;
+}
+
+.excavator-forearm {
+  transform-origin: 420px 218px;
+  animation: excavatorForearm 8s ease-in-out infinite;
+}
+
+.excavator-bucket {
+  transform-origin: 430px 210px;
+  animation: excavatorBucket 8s ease-in-out infinite;
+}
+
+.sand-particle {
+  animation: sandFall 2s ease-out infinite;
+}
+
